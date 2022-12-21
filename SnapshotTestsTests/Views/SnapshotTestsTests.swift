@@ -2,6 +2,11 @@ import XCTest
 @testable import SnapshotTests
 
 final class SnapshotTestsTests: XCTestCase {
+    func test_zer() {
+        let (sut) = makeSUT()
+        
+        let snapshot = sut.snapshot()
+    }
 }
 
 extension SnapshotTestsTests {
@@ -13,5 +18,14 @@ extension SnapshotTestsTests {
         sut.loadViewIfNeeded()
         
         return (sut)
+    }
+}
+
+extension UIViewController {
+    func snapshot() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        return renderer.image { action in
+            view.layer.render(in: action.cgContext)
+        }
     }
 }
