@@ -16,6 +16,7 @@
 		F6AE05DF295381C10031021A /* SnapshotTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE05DE295381C10031021A /* SnapshotTestsTests.swift */; };
 		F6AE05E8295381EE0031021A /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE05E6295381E50031021A /* TestingAppDelegate.swift */; };
 		F6AE05EB295382090031021A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE05EA295382090031021A /* main.swift */; };
+		F6AEE9BA295C0BF500DB0364 /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = F6AEE9B9295C0BF500DB0364 /* snapshots */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		F6AE05DE295381C10031021A /* SnapshotTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTestsTests.swift; sourceTree = "<group>"; };
 		F6AE05E6295381E50031021A /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		F6AE05EA295382090031021A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F6AEE9B9295C0BF500DB0364 /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; name = snapshots; path = Views/snapshots; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		F6AE05DD295381C10031021A /* SnapshotTestsTests */ = {
 			isa = PBXGroup;
 			children = (
+				F6AEE9B9295C0BF500DB0364 /* snapshots */,
 				F6AE05E9295381F40031021A /* Initial */,
 				F6AE05E5295381DB0031021A /* Views */,
 			);
@@ -226,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6AEE9BA295C0BF500DB0364 /* snapshots in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
