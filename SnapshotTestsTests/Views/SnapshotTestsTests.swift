@@ -2,10 +2,11 @@ import XCTest
 @testable import SnapshotTests
 
 final class SnapshotTestsTests: XCTestCase {
-    func test_zer() {
+    func test_assertThatTheRecordedSnapshotIsEqualToOtherOne() {
         let (sut) = makeSUT()
         
-        record(snapshot: sut.snapshot(), named: "DEFAULT_INITIAL_SCREEN")
+//        record(snapshot: sut.snapshot(), named: "DEFAULT_INITIAL_SCREEN")
+        assert(snapshot: sut.snapshot(), named: "DEFAULT_INITIAL_SCREEN")
     }
 }
 
@@ -19,6 +20,32 @@ extension SnapshotTestsTests {
         sut.loadViewIfNeeded()
         
         return (sut)
+    }
+    
+    func assert(snapshot: UIImage, named name: String, file: StaticString = #filePath, line: UInt = #line) {
+        guard let snapshotData = snapshot.pngData() else {
+            XCTFail("Failed to generate PNG data representation from snapshot", file: file, line: line)
+            return
+        }
+
+        let snapshotURL = URL(fileURLWithPath: String(describing: file))
+            .deletingLastPathComponent()
+            .appendingPathComponent("snapshots")
+            .appendingPathComponent("\(name).png")
+        
+        guard let storedSnapshotData = try? Data(contentsOf: snapshotURL) else {
+            XCTFail("Failed to load stored snapshot at url: \(snapshotURL). Use the record method to store a snapshot before asserting", file: file, line: line)
+            return
+        }
+        
+        if snapshotData != storedSnapshotData {
+            let temporarySnapshotURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+                .appendingPathComponent(snapshotURL.lastPathComponent)
+            
+            try? snapshotData.write(to: temporarySnapshotURL)
+            
+            XCTFail("New snapshot does not match stored snapshot. New snapshot URL: \(temporarySnapshotURL), stored snapshot URL: \(snapshotURL)", file: file, line: line)
+        }
     }
     
     func record(snapshot: UIImage, named name: String, file: StaticString = #filePath, line: UInt = #line) {
